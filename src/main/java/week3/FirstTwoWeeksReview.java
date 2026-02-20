@@ -7,6 +7,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Out of memory error
@@ -188,8 +190,31 @@ class Lazy {
     }
 }
 /**
- * oracle live sql
- *  hr.employees
- *  hr.departments
- *
+ * HashMap equals and hashcode
  */
+
+class StudentTeacher {
+    private int id;
+
+    public StudentTeacher(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public static void main(String[] args) {
+        Map<StudentTeacher, Integer> map = new HashMap<>();
+        StudentTeacher s1 = new StudentTeacher(1);
+        StudentTeacher s2 = new StudentTeacher(1);
+        map.put(s1, 1);
+        System.out.println(map.get(s2));
+    }
+}
+
+
