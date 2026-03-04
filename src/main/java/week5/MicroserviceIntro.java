@@ -138,19 +138,98 @@ package week5;
  *          raml (?)
  *
  * 12. Security
- * 13. Cloud
- * 14. config service
+ * 13. Cloud AWS
+ *  API Gateway
+ *  EC2 = ASG
+ *      = On demand / Reserved / Spot / Dedicate
+ *  ECS = EC2 / Fargate
+ *  Lambda :
+ *      serverless: python / java ..
+ *      can run at most 15min
+ *      code start -> warm start / keep few instance running
+ *      more memory -> more cpu
+ *      limited disk usage
+ *
+ *  CloudMap = discovery service
+ *  SQS = FIFO / Standard
+ *  SNS = Publisher subscriber
+ *  SES = email
+ *
+ *  IAM = role / policy
+ *  VPC = subnet / network management
+ *        NACL
+ *  Security Group
+ *
+ *  Direct Connect / VPN =
+ *
+ *
+ *  ElasticCache = Redis
+ *  S3 = Object Storage
+ *  Aurora > RDS -> Postgre , MySQL, Oracle
+ *  Dynamodb
+ *
+ *  AWS Connect = step1 -> step2 -> step3 -> step5
+ *                          |
+ *                        step4
+ *
+ *  Lex
+ *  ..
+ *
+ * 14. config service(has many properties, centralize properties)
+ *
+ *      spring boot / client flow
+ *      1. start spring boot -> pulling properties from config service
+ *      2. load those properties in spring boot app / memory
+ *      3. start application
+ *
+ *      if we change properties in config service
+ *      1. spring boot actuator -> provides /restart
+ * 15. Graphql : node.js / BFF layer
+ *
+ *      /query post
+ *      request body
+ *      graphql make decision -> to call diff endpoints
+ *
+ *
+ * 16. GenAI/ chatbot
+ *      user -> query -> service
+ *      1. LLM -> return result if we find it in LLM and score is high
+ *      2. search RAG(vector db)
+ *              1. store vector
+ *              2. search -> getting closest top K result
+ *      3. verify those results -> get score
+ *      4. based on your intents
+ *          MCP -> routing(hardcode / LLM agent) -> call diff db / endpoint
+ *      5. use LLM to generate readable answer
+ *
+ *
+ * Skill: query order info
+ *      1. extract id from user query
+ *      2. send request to order endpoint
+ *      3. generate result..
+ *
+ * tools:
+ *      1. order endpoint
+ *
+ *
+ * 17. ETL pipeline
+ *
+ *          1. input : kafka stream(real time data) , data source(db/s3..)
+ *          2. AWS Glue(pyspark) / AWS EMR(pyspark)
+ *             AWS Glue : serverless
+ *             AWS EMR : worker node, master node
  *
  *
  *
  *
+ *    Hadoop
+ *      Yarn (resources management / allocate resources)
+ *      Map-reduce / Spark (computing engine)
+ *      Hive (catalog layer)
+ *          |                       \
+ *          |                        other resources
+ *  HDFS (disk / storage layer)
  *
  *
- *
- *
- *
- *
- *
- *
- * monolithic
+ * 
  */
