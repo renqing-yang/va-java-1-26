@@ -93,6 +93,10 @@ package week5;
  *      exact 1 = need kafka downstream / need other infrastructure to track message status
  *  8. offset
  *      index in partition
+ *      commit all sequential messages
+ *      offsets: 10, 11, 12, 13
+ *      if we commit 13, it means all10, 11, 12 have finished
+ *
  *  9. how to let kafka process your message in order / tx in order
  *      in SQS : FIFO
  *      in Kafka : set key to message, messages with same key are pushed to same partition
@@ -116,6 +120,25 @@ package week5;
  *      a. retry it again/reprocess it again
  *      b. generate ticket -> send it to developers ..
  *      ...
+ *
+ *      a. SQS has built in max-retrieve-count
+ *      b. kafka -> @Retryable
+ *
+ *              order-processed-retry-delay-3  topic
+ *              order-processed-retry-delay-2  topic
+ *              order-processed-retry-delay-1  topic
+ *              order-processed  topic
+ *
+ *         consumer
+ *              1. load message header
+ *              2. check retry count / retry at timestamp
+ *              3. poll 10 / 20 / 30 messages
+ *
+ *                  for messages reach retry timestamp ->
+ *                          retry count + 1
+ *                          retry timestamp updated to next execution time
+ *                          push it to main topic
+ *
  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
  *  Homework 5 (AI)
  *      1. create frontend page (react/angular) to upload file
